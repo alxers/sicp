@@ -43,3 +43,29 @@ evaluation.
 
 In contrast to the "evaluate the arguments and then apply" method that the interpreter
 actually uses, which is called applicative-order evaluation
+
+(define (square x)
+	(* x x))
+
+(define (sum-of-squares a b)
+	(+ (square a) (square b)))
+
+
+(define (sum-of-two-largest a b c)
+	(cond ((and (< c a) (< c b)) (sum-of-squares a b))
+	      ((and (< a c) (< a b)) (sum-of-squares c b))
+	      ((and (< b c) (< b a)) (sum-of-squares a c))
+	      ((= a b) (sum-of-squares a c))
+	      ((= a c) (sum-of-squares a b))
+	      ((= b c) (sum-of-squares a c))
+	      ((= a b c) (sum-of-squares a b))
+	      (else "really?")
+	      )
+	)
+
+Alternative and more clear solution
+
+(define (sq-sum-of-lg x y z)
+  (if (> x y)
+    (sum-of-squares y (if (> x z) x z))
+    (sum-of-squares x (if (> y z) y z))))
