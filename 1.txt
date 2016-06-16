@@ -47,23 +47,23 @@ actually uses, which is called applicative-order evaluation
 Ex. 1.3
 
 (define (square x)
-	(* x x))
+    (* x x))
 
 (define (sum-of-squares a b)
-	(+ (square a) (square b)))
+    (+ (square a) (square b)))
 
 
 (define (sum-of-two-largest a b c)
-	(cond ((and (< c a) (< c b)) (sum-of-squares a b))
-	      ((and (< a c) (< a b)) (sum-of-squares c b))
-	      ((and (< b c) (< b a)) (sum-of-squares a c))
-	      ((= a b) (sum-of-squares a c))
-	      ((= a c) (sum-of-squares a b))
-	      ((= b c) (sum-of-squares a c))
-	      ((= a b c) (sum-of-squares a b))
-	      (else "really?")
-	      )
-	)
+    (cond ((and (< c a) (< c b)) (sum-of-squares a b))
+          ((and (< a c) (< a b)) (sum-of-squares c b))
+          ((and (< b c) (< b a)) (sum-of-squares a c))
+          ((= a b) (sum-of-squares a c))
+          ((= a c) (sum-of-squares a b))
+          ((= b c) (sum-of-squares a c))
+          ((= a b c) (sum-of-squares a b))
+          (else "really?")
+          )
+    )
 
 Alternative and more clear solution
 
@@ -78,11 +78,57 @@ Ex. 1.5
 (define (p) (p))
 
 (define (test x y)
-	(if (= x 0)
-		0
-		y))
+    (if (= x 0)
+        0
+        y))
 
 (test 0 (p))
 
 In case of an applicative order we won't be able to evaluate operands because of recursive procedure "p"
 With normal order first if will be evaluated
+
+;; Ex. 1.7
+
+(define (square x)
+    (* x x))
+
+(define (sqrt-iter guess x)
+    (if (good-enough? guess x)
+        guess
+        (sqrt-iter (improve guess x) x)
+        )
+       )
+      
+(define (improve guess x)
+    (average (/ x guess) guess)
+    )
+
+(define (average x y)
+    (/ (+ x y) 2)
+    )
+
+(define (good-enough? guess x)
+    (< (abs (- x (square guess))) 0.001)
+    )
+
+(define (sqrt x)
+    (sqrt-iter 1.0 x))
+
+
+(define (new-if predicate then-clause else-clause)
+    (cond (predicate then-clause)
+          (else else-clause))
+    )
+
+
+;; It'll be an infinite loop with new-if.
+;; if is a special form, so it evaluates then-clause first
+;; new-if is a procedure, it tries to evaluate all the arguments (and because of an applicative order it gets stuck in an infinite loop)
+
+;; It will work if we put cond like this
+(define (sqrt-iter1 guess x)
+    (cond ((good-enough? guess x) guess)
+        (else (sqrt-iter (improve guess x) x))
+        )
+       )
+
