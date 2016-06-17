@@ -132,3 +132,26 @@ With normal order first if will be evaluated
         )
        )
 
+;; Ex. 1.8
+
+(define (cqrt-iter guess x)
+    (if (cqrt-good-enough? guess x)
+        guess
+        (cqrt-iter (cqrt-improve guess x) x)
+        )
+       )
+      
+(define (cqrt-good-enough? guess x)
+    (< (abs (- x (* guess guess guess))) 0.001)
+    )
+      
+(define (cqrt-improve guess x)
+    (cqrt-average (/ x (square guess)) (* 2 guess))
+    )
+
+(define (cqrt-average x y)
+    (/ (+ x y) 3)
+    )
+   
+(define (cqrt x)
+    (cqrt-iter 1.0 x))
