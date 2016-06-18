@@ -1,8 +1,8 @@
-1.1.3 Evaluating combinations
-
-To evaluate a combination:
-1. Evaluate the subexpressions of the combination
-2. Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpression (the operands).
+;; 1.1.3 Evaluating combinations
+;; 
+;; To evaluate a combination:
+;; 1. Evaluate the subexpressions of the combination
+;; 2. Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpression (the operands).
 
 (define (square x)
   (* x x))
@@ -10,41 +10,42 @@ To evaluate a combination:
 (define (sq-sum x y)
   (+ (square x) (square y)))
 
- If we call (sq-sum (+ a 1) (* a 2)) where a is 5 then:
+;; If we call (sq-sum (+ a 1) (* a 2)) where a is 5 then:
 
-"applicative order"
+;; "applicative order"
 
-1. (sq-sum (+ 5 1) (* 5 2)) replace parameter a by the argument 5
-2. (+ (square 6) (square 10)) evaluate operands and replace sq-sum with the body of the procedure sq-sum
-3. (+ (* 6 6) (* 10 10)) replace square with the body of the procedure square
-4. (+ 36 100)
-5. 136
-
-According to the description of evaluation given in section 1.1.3, the interpreter first evaluates the
-operator and operands and then applies the resulting procedure to the resulting arguments.
-An alternative evaluation model would not evaluate the operands
-until their values were needed. Instead it would first substitute operand expressions for parameters
-until it obtained an expression involving only primitive operators, and would then perform the
-evaluation.
-
-"normal-order"
+;; 1. (sq-sum (+ 5 1) (* 5 2)) replace parameter a by the argument 5
+;; 2. (+ (square 6) (square 10)) evaluate operands and replace sq-sum with the body of the procedure sq-sum
+;; 3. (+ (* 6 6) (* 10 10)) replace square with the body of the procedure square
+;; 4. (+ 36 100)
+;; 5. 136
+;; 
+;; According to the description of evaluation given in section 1.1.3, the interpreter first evaluates the
+;; operator and operands and then applies the resulting procedure to the resulting arguments.
+;; An alternative evaluation model would not evaluate the operands
+;; until their values were needed. Instead it would first substitute operand expressions for parameters
+;; until it obtained an expression involving only primitive operators, and would then perform the
+;; evaluation.
+;; 
+;; "normal-order"
 
 1. (sq-sum (+ 5 1) (* 5 2))
 2. (+ (square (+ 5 1) square (* 5 2)))
 3. (+ (* (+ 5 1) (+ 5 1)) (* (* 5 2) (* 5 2)))
-And then reduction
 
-4. (+ (* 6 6) (* 10 10))
-5. (+ 36 100)
-6. 136
+;; And then reduction
+;; 
+;; 4. (+ (* 6 6) (* 10 10))
+;; 5. (+ 36 100)
+;; 6. 136
 
-This alternative "fully expand and then reduce" evaluation method is known as normal-order 
-evaluation.
+;; This alternative "fully expand and then reduce" evaluation method is known as normal-order 
+;; evaluation.
 
-In contrast to the "evaluate the arguments and then apply" method that the interpreter
-actually uses, which is called applicative-order evaluation
+;; In contrast to the "evaluate the arguments and then apply" method that the interpreter
+;; actually uses, which is called applicative-order evaluation
 
-Ex. 1.3
+;; Ex. 1.3
 
 (define (square x)
     (* x x))
@@ -65,7 +66,7 @@ Ex. 1.3
           )
     )
 
-Alternative and more clear solution
+;; Alternative and more clear solution
 
 (define (sq-sum-of-lg x y z)
   (if (> x y)
@@ -73,7 +74,7 @@ Alternative and more clear solution
     (sum-of-squares x (if (> y z) y z))))
 
 
-Ex. 1.5
+;; Ex. 1.5
 
 (define (p) (p))
 
@@ -84,8 +85,8 @@ Ex. 1.5
 
 (test 0 (p))
 
-In case of an applicative order we won't be able to evaluate operands because of recursive procedure "p"
-With normal order first if will be evaluated
+;; In case of an applicative order we won't be able to evaluate operands because of recursive procedure "p"
+;; With normal order first if will be evaluated
 
 ;; Ex. 1.7
 
