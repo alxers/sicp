@@ -88,17 +88,17 @@
 ;; In case of an applicative order we won't be able to evaluate operands because of recursive procedure "p"
 ;; With normal order first if will be evaluated
 
-;; Ex. 1.7
+;; Ex. 1.6
 
 (define (square x)
     (* x x))
 
-(define (sqrt-iter guess x)
-    (if (good-enough? guess x)
-        guess
-        (sqrt-iter (improve guess x) x)
-        )
-       )
+;;(define (sqrt-iter guess x)
+;;    (if (good-enough? guess x)
+;;        guess
+;;        (sqrt-iter (improve guess x) x)
+;;        )
+;;       )
       
 (define (improve guess x)
     (average (/ x guess) guess)
@@ -108,12 +108,12 @@
     (/ (+ x y) 2)
     )
 
-(define (good-enough? guess x)
-    (< (abs (- x (square guess))) 0.001)
-    )
+;;(define (good-enough? guess x)
+;;    (< (abs (- x (square guess))) 0.001)
+;;    )
 
-(define (sqrt x)
-    (sqrt-iter 1.0 x))
+;;(define (sqrt x)
+;;    (sqrt-iter 1.0 x))
 
 
 (define (new-if predicate then-clause else-clause)
@@ -132,6 +132,23 @@
         (else (sqrt-iter (improve guess x) x))
         )
        )
+
+
+;; Ex. 1.7
+
+(define (sqrt-iter previous-guess guess x)
+    (if (good-enough? previous-guess guess x)
+        guess
+        (sqrt-iter previous-guess (improve guess x) x)
+        )
+       )
+
+(define (good-enough? previous-guess guess x)
+    (< (/ (abs (- previous-guess guess)) guess) 0.001)
+    )
+
+(define (sqrt x)
+    (sqrt-iter 1.0 1.0 x))
 
 ;; Ex. 1.8
 
