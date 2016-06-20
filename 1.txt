@@ -173,3 +173,21 @@
    
 (define (cqrt x)
     (cqrt-iter 1.0 x))
+
+;; Ex. 1.9
+
+;; (define (+ a b)
+;;   (if (= a 0)
+;;    b
+;;    (inc (+ (dec a) b))))
+
+1. if (= 4 0)
+    (inc (+ dec 4) 5)
+2. if (= 4 0)
+    (inc (+ dec 4) 5)
+3. if (= 4 0)
+    (inc (+ dec 4) 5)
+4. if (= 4 0)
+    (inc (+ dec 4) 5)
+5. if (= 4 0)
+    (inc (+ dec 4) 5)
