@@ -181,13 +181,39 @@
 ;;    b
 ;;    (inc (+ (dec a) b))))
 
-1. if (= 4 0)
-    (inc (+ dec 4) 5)
-2. if (= 4 0)
-    (inc (+ dec 4) 5)
-3. if (= 4 0)
-    (inc (+ dec 4) 5)
-4. if (= 4 0)
-    (inc (+ dec 4) 5)
-5. if (= 4 0)
-    (inc (+ dec 4) 5)
+;; 1. if (= 4 0)
+;;     (inc (+ dec 4) 5)
+;; 2. if (= 3 0)
+;;     (inc (+ dec 3) 5)
+;; 3. if (= 2 0)
+;;     (inc (+ dec 2) 5)
+;; 4. if (= 1 0)
+;;     (inc (+ dec 1) 5)
+;; 5. if (= 0 0)
+;;     5
+
+;; First one is recursive process, we need a stack to keep "save" the answers
+
+;;(define (+ a b)
+;;    (if (= a 0)
+;;    b
+;;    (+ (dec a) (inc b))))
+
+;; 1. if (= 4 0)
+;;     (+ (dec 4) (inc 5))
+;; 2. if (= 3 0)
+;;     (+ (dec 4) (inc 6))
+;; 3. if (= 2 0)
+;;     (+ (dec 4) (inc 7))
+;; 4. if (= 1 0)
+;;     (+ (dec 4) (inc 8))
+;; 5. if (= 0 0)
+;;     9
+
+;; Second is iterative process, we always have the current state (on each step).
+
+;; Ex. 1.10
+
+;; (define (f n) (A 0 n)) ;; 2n
+;; (define (g n) (A 1 n)) ;; 2 * (A 1 (- n 1))
+;; (define (h n) (A 2 n)) ;; (2 * (A 1 (- n 1)) (A 2 (- n 1)))
