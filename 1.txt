@@ -224,3 +224,11 @@
     (if (< n 3)
         n
         (+ (f (- n 1)) (f (- n 2)) (f (- n 3))))
+
+(define (ff-iter a b c count)
+    (if (= count 0)
+        a
+        (ff-iter b c (+ a b c) (- count 1)) ))
+
+(define (ff n)
+    (ff-iter 0 1 2 n))
