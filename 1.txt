@@ -232,3 +232,10 @@
 
 (define (ff n)
     (ff-iter 0 1 2 n))
+
+
+;; Ex. 1.12
+(define (f row col)
+    (if (or (= col 1) (= row col))
+        1
+        (+ (f (- row 1) (- col 1)) (f (- row 1) col)) ))
