@@ -233,6 +233,13 @@
 (define (ff n)
     (ff-iter 0 1 2 n))
 
+;; Ex. 1.11 (eng)
+
+(define (f-eng n)
+    (if (< n 3)
+        n
+        (+ (f-eng (- n 1)) (* 2 (f-eng (- n 2))) (* 3 (f-eng (- n 3))))))
+
 
 ;; Ex. 1.12
 (define (f row col)
