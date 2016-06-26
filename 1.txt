@@ -235,10 +235,18 @@
 
 ;; Ex. 1.11 (eng)
 
-(define (f-eng n)
+(define (f-second n)
     (if (< n 3)
         n
-        (+ (f-eng (- n 1)) (* 2 (f-eng (- n 2))) (* 3 (f-eng (- n 3))))))
+        (+ (f-second (- n 1)) (* 2 (f-second (- n 2))) (* 3 (f-second (- n 3))))))
+
+(define (ff-iter-second a b c count)
+    (if (= count 0)
+        a
+        (ff-iter-second b (* 2 c) (+ a (* 2 b) (* 3 c)) (- count 1)) ))
+       
+(define (ff-second n)
+    (ff-iter-second 0 1 2 n)) ;; Change iter nums
 
 
 ;; Ex. 1.12
