@@ -255,7 +255,7 @@
         1
         (+ (f (- row 1) (- col 1)) (f (- row 1) col)) ))
 
-;; Ex 1.15
+;; Ex. 1.15
 ;; (sine 12.15) 
 ;; (p (sine 4.05)) 
 ;; (p (p (sine 1.35))) 
@@ -263,3 +263,13 @@
 ;; (p (p (p (p (sine 0.15))))) 
 ;; (p (p (p (p (p (sine 0.05)))))) 
 ;; (p (p (p (p (p 0.05))))) 
+
+
+;; Ex. 1.16
+(define (fast-expt-iter a b n)
+  (cond ((= n 0) a)
+        ((even? n) (fast-expt-iter a (square b) (/ n 2)))
+        (else (fast-expt-iter (* a b) b (- n 1)))))
+       
+(define (expt-iter b n)
+  (fast-expt-iter 1 b n))
