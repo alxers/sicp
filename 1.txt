@@ -315,5 +315,12 @@
 ;; (gcd 2 (reminder 4 2))
 ;; "reminder" called 4 times
 ;; 
-;; 
-;; 
+;; Normal order
+;; 1. if (= 40 0)
+;; (gcd 40 (reminder 206 40))
+;; 2. if (= (reminder 206 40) 0)
+;; (gcd (reminder 206 40) (reminder 40 (reminder 206 40))) ;; 1
+;; 3. if (= (reminder 40 (reminder 206 40) 0) ;; 1 + 2
+;; (gcd (reminder 40 (reminder 206 40)) (reminder (reminder 206 40) (reminder 40 (reminder 206 40))))
+;; 4. if (= (reminder (reminder 206 40) (reminder 40 (reminder 206 40)))) ;; 3 + 4 
+;; And so on...
