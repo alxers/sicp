@@ -1,5 +1,5 @@
 ;; 1.1.3 Evaluating combinations
-;; 
+;;
 ;; To evaluate a combination:
 ;; 1. Evaluate the subexpressions of the combination
 ;; 2. Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpression (the operands).
@@ -19,14 +19,14 @@
 ;; 3. (+ (* 6 6) (* 10 10)) replace square with the body of the procedure square
 ;; 4. (+ 36 100)
 ;; 5. 136
-;; 
+;;
 ;; According to the description of evaluation given in section 1.1.3, the interpreter first evaluates the
 ;; operator and operands and then applies the resulting procedure to the resulting arguments.
 ;; An alternative evaluation model would not evaluate the operands
 ;; until their values were needed. Instead it would first substitute operand expressions for parameters
 ;; until it obtained an expression involving only primitive operators, and would then perform the
 ;; evaluation.
-;; 
+;;
 ;; "normal-order"
 
 1. (sq-sum (+ 5 1) (* 5 2))
@@ -34,12 +34,12 @@
 3. (+ (* (+ 5 1) (+ 5 1)) (* (* 5 2) (* 5 2)))
 
 ;; And then reduction
-;; 
+;;
 ;; 4. (+ (* 6 6) (* 10 10))
 ;; 5. (+ 36 100)
 ;; 6. 136
 
-;; This alternative "fully expand and then reduce" evaluation method is known as normal-order 
+;; This alternative "fully expand and then reduce" evaluation method is known as normal-order
 ;; evaluation.
 
 ;; In contrast to the "evaluate the arguments and then apply" method that the interpreter
@@ -99,7 +99,7 @@
 ;;        (sqrt-iter (improve guess x) x)
 ;;        )
 ;;       )
-      
+
 (define (improve guess x)
     (average (/ x guess) guess)
     )
@@ -158,11 +158,11 @@
         (cqrt-iter (cqrt-improve guess x) x)
         )
        )
-      
+
 (define (cqrt-good-enough? guess x)
     (< (abs (- x (* guess guess guess))) 0.001)
     )
-      
+
 (define (cqrt-improve guess x)
     (cqrt-average (/ x (square guess)) (* 2 guess))
     )
@@ -170,7 +170,7 @@
 (define (cqrt-average x y)
     (/ (+ x y) 3)
     )
-   
+
 (define (cqrt x)
     (cqrt-iter 1.0 x))
 
@@ -244,7 +244,7 @@
     (if (= count 0)
         a
         (ff-iter-second b (* 2 c) (+ a (* 2 b) (* 3 c)) (- count 1)) ))
-       
+
 (define (ff-second n)
     (ff-iter-second 0 1 2 n)) ;; Change iter nums
 
@@ -256,13 +256,13 @@
         (+ (f (- row 1) (- col 1)) (f (- row 1) col)) ))
 
 ;; Ex. 1.15
-;; (sine 12.15) 
-;; (p (sine 4.05)) 
-;; (p (p (sine 1.35))) 
-;; (p (p (p (sine 0.45)))) 
-;; (p (p (p (p (sine 0.15))))) 
-;; (p (p (p (p (p (sine 0.05)))))) 
-;; (p (p (p (p (p 0.05))))) 
+;; (sine 12.15)
+;; (p (sine 4.05))
+;; (p (p (sine 1.35)))
+;; (p (p (p (sine 0.45))))
+;; (p (p (p (p (sine 0.15)))))
+;; (p (p (p (p (p (sine 0.05))))))
+;; (p (p (p (p (p 0.05)))))
 
 
 ;; Ex. 1.16
@@ -270,7 +270,7 @@
   (cond ((= n 0) a)
         ((even? n) (fast-expt-iter a (square b) (/ n 2)))
         (else (fast-expt-iter (* a b) b (- n 1)))))
-       
+
 (define (expt-iter b n)
   (fast-expt-iter 1 b n))
 
@@ -299,7 +299,7 @@
 ;; Ex. 1.20
 
 (define (gcd a b)
-  (if (= b 0) 
+  (if (= b 0)
     a
     (gcd b (remainder a b))))
 
@@ -314,7 +314,7 @@
 ;; (gcd 4 2)
 ;; (gcd 2 (reminder 4 2))
 ;; "reminder" called 4 times
-;; 
+;;
 ;; Normal order
 ;; 1. if (= 40 0)
 ;; (gcd 40 (reminder 206 40))
@@ -322,5 +322,17 @@
 ;; (gcd (reminder 206 40) (reminder 40 (reminder 206 40))) ;; 1
 ;; 3. if (= (reminder 40 (reminder 206 40) 0) ;; 1 + 2
 ;; (gcd (reminder 40 (reminder 206 40)) (reminder (reminder 206 40) (reminder 40 (reminder 206 40))))
-;; 4. if (= (reminder (reminder 206 40) (reminder 40 (reminder 206 40)))) ;; 3 + 4 
+;; 4. if (= (reminder (reminder 206 40) (reminder 40 (reminder 206 40)))) ;; 3 + 4
 ;; And so on...
+
+;; Ex. 1.21
+(define (smallest-divisor n)
+   (find-divisor n 2))
+
+(define (find-divisor n test-divisor)
+   (cond ((> (square test-divisor) n) n)
+         ((divides? test-divisor n) test-divisor)
+         (else (find-divisor n (+ test-divisor 1)))))
+
+(define (divides? a b)
+   (= (remainder b a) 0))
