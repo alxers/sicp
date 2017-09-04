@@ -336,3 +336,5 @@
 
 (define (divides? a b)
    (= (remainder b a) 0))
+   
+ ;; Ex. 1.22
