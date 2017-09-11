@@ -379,6 +379,7 @@
   (display " *** ")
   (display elapsed-time))
 
+;; TODO fix
 (define (search-for-primes start end)
   (if (= start end)
       (timed-prime-test start)
