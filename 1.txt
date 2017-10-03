@@ -379,8 +379,8 @@
   (display " *** ")
   (display elapsed-time))
 
-(define (search-for-primes start end)
-  (if (= start end)
-      (timed-prime-test start)
-      (timed-prime-test (+ 1 start))
-  ))
+(define (search-for-primes number-from prime-count) 
+  (if (> prime-count 0) 
+      (if (timed-prime-test number-from) 
+          (search-for-primes (+ number-from 1) (- prime-count 1)) 
+          (search-for-primes (+ number-from 1) prime-count))))
