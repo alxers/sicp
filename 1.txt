@@ -384,3 +384,5 @@
       (if (timed-prime-test number-from) 
           (search-for-primes (+ number-from 1) (- prime-count 1)) 
           (search-for-primes (+ number-from 1) prime-count))))
+          
+  ;; Ex 1.23
