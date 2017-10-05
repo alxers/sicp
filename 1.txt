@@ -385,4 +385,9 @@
           (search-for-primes (+ number-from 1) (- prime-count 1)) 
           (search-for-primes (+ number-from 1) prime-count))))
           
-  ;; Ex 1.23
+ ;; Ex 1.23
+ 
+ (define (next x) 
+  (if (= x 2) 
+      3 
+      (+ x 2))) 
