@@ -397,6 +397,18 @@
         ((divides? test-divisor n) test-divisor) 
         (else (find-divisor n (next test-divisor)))))
         
- ;; Ex 1.24
+ ;; Ex 1.27
+ 
+ (define (square x) 
+  (* x x))
+ 
+ (define (expmod base exp m) 
+  (cond ((= exp 0) 1) 
+        ((even? exp) 
+         (remainder (square (expmod base (/ exp 2) m)) 
+                    m)) 
+        (else 
+         (remainder (* base (expmod base (- exp 1) m)) 
+                    m))))
  
  
