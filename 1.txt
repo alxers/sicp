@@ -411,4 +411,6 @@
          (remainder (* base (expmod base (- exp 1) m)) 
                     m))))
  
- 
+ (define (carmichael-test? a n)
+  (= (expmod a n n) a))
+
