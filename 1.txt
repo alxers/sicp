@@ -410,7 +410,10 @@
         (else 
          (remainder (* base (expmod base (- exp 1) m)) 
                     m))))
- 
- (define (carmichael-test? a n)
-  (= (expmod a n n) a))
+
+(define (carmichael-prime? n)
+  (define (carmichael-prime-iter a)
+    (cond ((= a 0) true)
+          ((= (expmod a n n) a)) (carmichael-prime-iter (- a 1)))
+          (else false)))
 
