@@ -417,3 +417,5 @@
           ((= (expmod a n n) a)) (carmichael-prime-iter (- a 1)))
           (else false)))
 
+
+;; Ex 1.28
