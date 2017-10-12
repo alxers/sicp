@@ -419,3 +419,12 @@
 
 
 ;; Ex 1.28
+
+(define (expmod base exp m)  
+  (cond ((= exp 0) 1)  
+        ((even? exp)  
+         (let ((tmp (expmod base (/ exp 2) m)))  
+         (if (and (or (not (= tmp 1)) (not (= tmp (- m 1)))) (= (square tmp) 1))  
+             0  
+             (remainder (square tmp) m))))  
+        (else (remainder (* base (expmod base (- exp 1) m)) m)))) 
