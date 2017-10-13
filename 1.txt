@@ -427,4 +427,6 @@
          (if (and (or (not (= tmp 1)) (not (= tmp (- m 1)))) (= (square tmp) 1))  
              0  
              (remainder (square tmp) m))))  
-        (else (remainder (* base (expmod base (- exp 1) m)) m)))) 
+        (else (remainder (* base (expmod base (- exp 1) m)) m))))
+        
+ ;; Ex 1.29
