@@ -429,9 +429,6 @@
              (remainder (square tmp) m))))  
         (else (remainder (* base (expmod base (- exp 1) m)) m))))
         
- ;; Ex 1.29
- 
-(define (simpson f a b n))
 
 ;; Ex 1.30
 
