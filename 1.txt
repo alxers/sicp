@@ -453,3 +453,5 @@
       null-value 
       (combiner (term a) 
                 (accumulate combiner null-value term (next a) next b))))
+
+;; Ex 1.33
