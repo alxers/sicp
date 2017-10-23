@@ -448,6 +448,7 @@
          (product term (next a) next b))))
 
 ;; Ex 1.32
+
 (define (accumulate combiner null-value term a next b) 
   (if (> a b) 
       null-value 
@@ -455,6 +456,7 @@
                 (accumulate combiner null-value term (next a) next b))))
 
 ;; Ex 1.33
+
 (define (filtered-accumulate combiner null-value term a next b filter) 
   (if (> a b) 
       null-value 
