@@ -465,6 +465,11 @@
                     (filtered-accumulate combiner null-value term (next a) next b filter)) 
           (filtered-accumulate combiner null-value term (next a) next b filter))))
           
+;; Ex 1.34
+
+(define (f g)
+  (g 2))
+          
 ;; Ex 1.35
 
 (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0) 
