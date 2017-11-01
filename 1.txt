@@ -469,6 +469,11 @@
 
 (define (f g)
   (g 2))
+  
+(f f)
+
+(f square)
+; 4
           
 ;; Ex 1.35
 
