@@ -471,12 +471,18 @@
   (g 2))
   
 (f f)
+
+(f (lambda (z) (* z (+ z 1))))
+;; 6
           
 ;; Ex 1.35
 
 (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0) 
 
 ;; Ex 1.36
+
+(define (average x y)
+  (/ (+ x y) 2))
 
 (define tolerance 0.00001)
 (define (fixed-point f first-guess)
