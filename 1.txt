@@ -485,6 +485,7 @@
   (/ (+ x y) 2))
 
 (define tolerance 0.00001)
+
 (define (fixed-point f first-guess)
   (define (try guess)
     (let ((next (f guess)))
