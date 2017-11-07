@@ -495,3 +495,6 @@
           (try next))))
   (try first-guess))
   
+;; Ex 1.37
+
+(define (cont-frac n d k))
