@@ -507,3 +507,14 @@
 (cont-frac (lambda (i) 1.0)
   (lambda (i) 1.0)
     k)
+    
+;; Ex 1.41
+
+(define (inc n)
+  (+ 1 n))
+
+(define (double p)
+  (lambda (y) (p (p y)))
+  )
+  
+(((double (double double)) inc) 5) ;; 21
