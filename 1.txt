@@ -519,3 +519,11 @@
   
 (((double (double double)) inc) 5) ;; 21
 
+;; Ex 1.42
+
+(define (compose f1 f2)
+  (lambda (x) (f1 (f2 x)) )
+  )
+
+((compose square inc) 6)
+
