@@ -528,3 +528,6 @@
 ((compose square inc) 6)
 
 ;; Ex 1.43
+
+(define (repeated f x)
+  )
