@@ -529,5 +529,10 @@
 
 ;; Ex 1.43
 
-(define (repeated f x)
-  )
+(define (repeated f n)
+  (lambda (y)
+    (if (<= n 1)
+      (f y)
+      ((repeated f (- n 1)) (f y))
+    )
+  ))
